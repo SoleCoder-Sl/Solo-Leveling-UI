@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Leveling UI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            position: relative;
+            height: 100vh;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .notification-box {
+            position: absolute;
+            top: 35vh;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            max-width: 600px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(0, 162, 255, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 162, 255, 0.8);
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .notification-box h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.8);
+        }
+
+        .notification-box p {
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
+        }
+
+        .buttons button {
+            padding: 14px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: transparent;
+            border: 2px solid rgba(0, 162, 255, 0.5);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(0, 162, 255, 0.5);
+        }
+
+        .buttons button:hover {
+            background: rgba(0, 162, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: normal;
+            color: white;
+            animation: glitch-animation 0.3s infinite linear alternate;
+        }
+
+        @keyframes glitch-animation {
+            0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            25% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; transform: skewX(-5deg); }
+            50% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; transform: skewX(5deg); }
+            75% { text-shadow: -3px -3px #ff00ff, 3px 3px #00ffff; transform: skewX(-5deg); }
+            100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+        }
+    </style>
+
+    <script>
+        function goToPlayerScreen() {
+            window.location.href = "player.html";
+        }
+
+        function glitchEffect() {
+            let player = document.querySelector(".player");
+            let isPlayer = true;
+
+            setInterval(() => {
+                player.classList.add("glitch");
+                setTimeout(() => {
+                    player.textContent = isPlayer ? "Monarch" : "Player";
+                    isPlayer = !isPlayer;
+                    setTimeout(() => {
+                        player.classList.remove("glitch");
+                    }, 2000);
+                }, 2000);
+            }, 5000);
+        }
+
+        document.addEventListener("DOMContentLoaded", glitchEffect);
+    </script>
+</head>
+
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="C:\\Users\\rkmai\\OneDrive\\Desktop\\Website\\background1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="notification-box">
+        <h1>⚠ NOTIFICATION</h1>
+        
+        <p>You have acquired the qualifications to be a <span class="player">Player</span>.</p>
+        
+        <p class="decision">Will you accept?</p>
+        
+        <div class="buttons">
+            <button onclick="goToPlayerScreen()">Yes</button>
+            <button>No</button>
+			<script>
+    function goToPlayerScreen() {
+        window.location.href = "Entery.html"; // Ensure this file exists in the same directory
+    }
+</script>
+        </div>
+    </div>
+</body>
+
+</html>
