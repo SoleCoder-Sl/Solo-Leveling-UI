@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Leveling - Character Creation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            position: relative;
+            height: 100vh;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .form-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%; /* Adjusted width */
+            max-width: 500px; /* Adjusted max-width */
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(0, 162, 255, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 162, 255, 0.8);
+            z-index: 1;
+        }
+
+        .form-box h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.8);
+        }
+
+        .form-box input,
+        .form-box button {
+            width: 60%;
+            margin: 10px auto;
+            padding: 8px 12px;
+            font-size: 16px;
+            background: transparent;
+            border: 1px solid rgba(0, 162, 255, 0.5);
+            border-radius: 5px;
+            color: white;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-box input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
+        }
+
+        .form-box button {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(0, 162, 255, 0.5);
+        }
+
+        .form-box button:hover {
+            background: rgba(0, 162, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
+        }
+
+        .details-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%; /* Adjusted width */
+            max-width: 500px; /* Adjusted max-width */
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(0, 162, 255, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 162, 255, 0.8);
+            z-index: 1;
+            display: none;
+        }
+
+        .details-box h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
+        }
+
+        .details-box p {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(0, 162, 255, 0.5);
+        }
+
+        .details-box .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .details-box .buttons button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background: transparent;
+            border: 2px solid rgba(0, 162, 255, 0.5);
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(0, 162, 255, 0.5);
+            margin: 0 10px;
+        }
+
+        .details-box .buttons button:hover {
+            background: rgba(0, 162, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
+        }
+    </style>
+    <script>
+        function saveDetails() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const title = document.getElementById("title").value;
+
+            localStorage.setItem("playerName", name);
+            localStorage.setItem("playerAge", age);
+            localStorage.setItem("playerTitle", title);
+
+            showDetails();
+        }
+
+        function showDetails() {
+            const name = localStorage.getItem("playerName");
+            const age = localStorage.getItem("playerAge");
+            const title = localStorage.getItem("playerTitle");
+
+            document.getElementById("formBox").style.display = "none";
+            const detailsBox = document.getElementById("detailsBox");
+            detailsBox.style.display = "block";
+
+            document.getElementById("playerNameDisplay").textContent = name;
+            document.getElementById("playerAgeDisplay").textContent = age;
+            document.getElementById("playerTitleDisplay").textContent = title;
+        }
+
+        function resetDetails() {
+            localStorage.removeItem("playerName");
+            localStorage.removeItem("playerAge");
+            localStorage.removeItem("playerTitle");
+
+            document.getElementById("detailsBox").style.display = "none";
+            document.getElementById("formBox").style.display = "block";
+        }
+
+        function confirmFinal() {
+            // Add your logic here for final confirmation
+            alert("Details Confirmed!"); // Example confirmation alert
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem("playerName")) {
+                showDetails();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="C:\\Users\\rkmai\\OneDrive\\Desktop\\Website\\background6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="form-box" id="formBox">
+        <h1>Character Creation</h1>
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="text" id="title" placeholder="Title" required>
+        <button onclick="saveDetails()">Confirm Details</button>
+    </div>
+
+    <div class="details-box" id="detailsBox">
+        <h1>Character Details</h1>
+        <p>Name: <span id="playerNameDisplay"></span></p>
+        <p>Age: <span id="playerAgeDisplay"></span></p>
+        <p>Title: <span id="playerTitleDisplay"></span></p>
+        <div class="buttons">
+            <button onclick="confirmFinal()">Confirm</button>
+			<script>
+    function confirmFinal(){
+        window.location.href = "Data.html"; // Ensure this file exists in the same directory
+    }
+</script>
+            <button onclick="resetDetails()">Reset</button>
+        </div>
+    </div>
+</body>
+
+</html>
